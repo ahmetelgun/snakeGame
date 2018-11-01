@@ -1,8 +1,14 @@
+var a = 1;
 window.onload = function(){
 	canvas = document.getElementById('game');
 	context = canvas.getContext('2d');
-
-	document.addEventListener('keydown', onKeyPress.bind(this));
+	document.addEventListener('keydown', function(e){
+		e.preventDefault();
+		if(window.a == 1){
+			window.a = 0;
+			onKeyPress(e);
+		}
+	});
 	init();
 }
 
@@ -26,6 +32,7 @@ function reset(){
 function loop(){
 	update();
 	draw();
+	window.a = 1;
 }
 
 function update(){
@@ -41,21 +48,18 @@ function update(){
 					velocityY = 0;
 			}
 			if((trail[trail.length-2].positionX-trail[trail.length-1].positionX)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX-1;
 					positionY = trail[trail.length -1].positionY;
 					velocityY = 0;
 					velocityX = -1;
 			}
 			if((trail[trail.length-1].positionY-trail[trail.length-2].positionY)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX;
 					positionY = trail[trail.length -1].positionY+1;
 					velocityY = 1;
 					velocityX = 0;
 			}
 			if((trail[trail.length-2].positionY-trail[trail.length-1].positionY)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX;
 					positionY = trail[trail.length -1].positionY-1;
 					velocityY = -1;
@@ -71,21 +75,18 @@ function update(){
 					velocityY = 0;
 			}
 			if((trail[trail.length-2].positionX-trail[trail.length-1].positionX)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX-1;
 					positionY = trail[trail.length -1].positionY;
 					velocityY = 0;
 					velocityX = -1;
 			}
 			if((trail[trail.length-1].positionY-trail[trail.length-2].positionY)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX;
 					positionY = trail[trail.length -1].positionY+1;
 					velocityY = 1;
 					velocityX = 0;
 			}
 			if((trail[trail.length-2].positionY-trail[trail.length-1].positionY)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX;
 					positionY = trail[trail.length -1].positionY-1;
 					velocityY = -1;
@@ -101,21 +102,18 @@ function update(){
 					velocityY = 0;
 			}
 			if((trail[trail.length-2].positionX-trail[trail.length-1].positionX)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX-1;
 					positionY = trail[trail.length -1].positionY;
 					velocityY = 0;
 					velocityX = -1;
 			}
 			if((trail[trail.length-1].positionY-trail[trail.length-2].positionY)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX;
 					positionY = trail[trail.length -1].positionY+1;
 					velocityY = 1;
 					velocityX = 0;
 			}
 			if((trail[trail.length-2].positionY-trail[trail.length-1].positionY)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX;
 					positionY = trail[trail.length -1].positionY-1;
 					velocityY = -1;
@@ -131,21 +129,18 @@ function update(){
 					velocityY = 0;
 			}
 			if((trail[trail.length-2].positionX-trail[trail.length-1].positionX)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX-1;
 					positionY = trail[trail.length -1].positionY;
 					velocityY = 0;
 					velocityX = -1;
 			}
 			if((trail[trail.length-1].positionY-trail[trail.length-2].positionY)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX;
 					positionY = trail[trail.length -1].positionY+1;
 					velocityY = 1;
 					velocityX = 0;
 			}
 			if((trail[trail.length-2].positionY-trail[trail.length-1].positionY)==1){
-					console.log("oldu");
 					positionX = trail[trail.length -1].positionX;
 					positionY = trail[trail.length -1].positionY-1;
 					velocityY = -1;
@@ -195,9 +190,11 @@ function draw(){
 			context.fillRect(t.positionX * gridSize + 3, t.positionY * gridSize + 3, gridSize -6, gridSize -6);
 		}
 	});
+	
 }
 
 function onKeyPress(e){
+	e.preventDefault();
 	if(e.keyCode === 37 && velocityX !== 1){
 		velocityX = -1;
 		velocityY = 0;
